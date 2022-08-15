@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import '../assets/scss/style.scss'
 
-
 const data = [
   {
     "id": 1,
@@ -63,51 +62,60 @@ const data = [
     "id": 9,
     "price": 60,
     "name": "FENDI F4300",
-    "url": "./glassesImage/v9.png",
+    "url": "./glassesImage/v7.png",
     "desc": "Light pink square lenses define these sunglasses, ending with amother of pearl effect tip. "
   }
 ]
 
 export default class UngDungChonKinh extends Component {
+  state = {
+    srcImg: './glassesImage/v9.png',
+    name: 'FENDI F8750',
+    desc: 'Light pink square lenses define these sunglasses, ending with amother of pearl effect tip.'
+  }
+
   renderGlasses = () => {
     return data.map((glass, index) => {
-      return <img src={glass.url} height={350} />
+      return <img src={glass.url} width={100} onClick={() => {
+        this.setState({
+          srcImg : glass.url,
+          name: glass.name,
+          desc: glass.desc
+        })
+      }} />
     })
   }
 
-
-
-
-
-  // renderCardFilm = () => {
-  //   return data.map((film, index) => {
-  //     return <div className='col-lg-2 col-md-3 mt-2' key={index}>
-  //       <div className='card'>
-  //         <img src={film.hinhAnh} alt="..." height={350}/>
-  //         <div className='card-body bg-dark text-white '>
-  //           <h3 style={{height:85}}>{film.tenPhim}</h3>
-  //           <p style={{height:75}}>{film.moTa.length > 60 ? film.moTa.slice(0,60)+'...': film.moTa}</p>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   })
-  // }
   render() {
     return (
       <div className='bg-glasses' >
         <div className='h-100' style={{ background: 'rgba(0,0,0,.5)', minHeight: '100vh' }}>
           <div className='container'>
-            <div className='row'>
-              <div className='col-6'>
-                <img src='../../imgUngDungChonKinh/model.jpg' alt="" width={280} />
-                <h3>dfgfed</h3>
+            <div className='row mb-3'>
+              <div className='col-6 mt-5 model-left'>
+                <img src='./glassesImage/model.jpg' alt="" width={280} />
+                <div className='img-content'>
+                  <h3>FENDI F4300</h3>
+                  <p>Light pink square lenses define these sunglasses, ending with amother of pearl effect tip.</p>
+                </div>
+                <div className='img-glass'>
+                  <img src='./glassesImage/v7.png' alt="" />
+                </div>
               </div>
-              <div className='col-6'>
-                <img src='../../imgUngDungChonKinh/model.jpg' alt="" width={280} />
+              <div className='col-6 mt-5 model-left'>
+                <img src='./glassesImage/model.jpg' alt="" width={280} />
+                <div className='img-content'>
+                  <h3>{this.state.name}</h3>
+                  <p>{this.state.desc}</p>
+                </div>
+                <div className='img-glass'>
+                  <img src={this.state.srcImg} alt="" />
+                </div>
+
               </div>
             </div>
-            <div>
-              <img src="../../imgUngDungChonKinh/g1.jpg" alt="" width={50} />
+            <div className='render-bg'>
+              {this.renderGlasses()}
             </div>
           </div>
         </div>
